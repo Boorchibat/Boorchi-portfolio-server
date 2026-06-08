@@ -9,10 +9,15 @@ const project = require("./src/route/ProjectRoute");
 const app = express();
 const port = process.env.PORT || 9000;
 
+console.log("MONGODB_URL:", process.env.MONGODB_URL ? "FOUND" : "MISSING");
+console.log("JWTSECRET:", process.env.JWTSECRET ? "FOUND" : "MISSING");
+console.log("PORT:", process.env.PORT || "MISSING");
+
 app.use(
   cors({
     origin: [
       "http://localhost:9000",
+      "https://lavenderblush-cat-844999.hostingersite.com/"
     ],
     credentials: true,
   })
