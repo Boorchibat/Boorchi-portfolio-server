@@ -5,10 +5,15 @@ const { getProjects } = require("../controller/projects/GetProjs");
 
 console.log("Loading GetProj");
 const { getProject } = require("../controller/projects/GetProj");
-
 console.log("Loading createProj");
-const { createProject } = require("../controller/projects/createProj");
-console.log("createProj loaded");
+
+try {
+  const { createProject } = require("../controller/projects/createProj");
+  console.log("createProj loaded");
+} catch (err) {
+  console.error("CREATEPROJ IMPORT FAILED:");
+  console.error(err);
+}
 
 console.log("Loading UpdateProj");
 const { updateProject } = require("../controller/projects/UpdateProj");
