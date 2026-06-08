@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const auth = require("./src/route/auth");
 const message = require("./src/route/MessageRoute");
+const project = require("./src/route/ProjectRoute");
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -25,6 +26,7 @@ app.get("/", async (request, response) => {
 
 app.use("/auth", auth);
 app.use("/message", message);
+app.use("/project", project);
 
 
 mongoose
