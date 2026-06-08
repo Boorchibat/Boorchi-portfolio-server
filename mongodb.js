@@ -8,7 +8,7 @@ const message = require("./src/route/MessageRoute");
 const project = require("./src/route/ProjectRoute");
 
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 3000;
 
 app.use(
   cors({
@@ -34,7 +34,7 @@ mongoose
   .connect(process.env.MONGODB_URL)
   .then(() => {
     app.listen(port, "0.0.0.0", () => {
-      console.log(`Server running on port ${port}`);
+      console.log(`Server running on ${port}`);
     });
   })
   .catch((err) => {
