@@ -8,7 +8,7 @@ const { getProject } = require("../controller/projects/GetProj");
 console.log("Loading createProj");
 
 try {
-  const { createProject } = require("../controller/projects/createProj");
+  const { createProject } = require("../controller/projects/CreateProj");
   console.log("createProj loaded");
 } catch (err) {
   console.error("CREATEPROJ IMPORT FAILED:");
