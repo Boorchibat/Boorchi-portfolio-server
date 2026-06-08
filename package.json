@@ -2,8 +2,9 @@
   "name": "portfolio-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "mongodb.js",
   "scripts": {
+    "start": "node mongodb.js",
     "server": "node mongodb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
