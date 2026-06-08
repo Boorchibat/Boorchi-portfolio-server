@@ -8,9 +8,11 @@ const { getProject } = require("../controller/projects/GetProj");
 
 console.log("Loading createProj");
 const { createProject } = require("../controller/projects/createProj");
+console.log("createProj loaded");
 
 console.log("Loading UpdateProj");
 const { updateProject } = require("../controller/projects/UpdateProj");
+console.log("UpdateProj loaded");
 
 console.log("Loading DeleteProj");
 const { deleteProject } = require("../controller/projects/DeleteProj");
