@@ -9,6 +9,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+app.use((req, res, next) => {
+  console.log(`REQUEST: ${req.method} ${req.originalUrl}`);
+  next();
+});
+
+
 const auth = require("./src/route/auth");
 const message = require("./src/route/MessageRoute");
 const project = require("./src/route/ProjectRoute");
