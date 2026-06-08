@@ -11,9 +11,17 @@ const cors = require("cors");
 
 console.log("Loading routes...");
 
+console.log("Loading auth...");
 const auth = require("./src/route/auth");
+console.log("Auth loaded");
+
+console.log("Loading message...");
 const message = require("./src/route/MessageRoute");
+console.log("Message loaded");
+
+console.log("Loading project...");
 const project = require("./src/route/ProjectRoute");
+console.log("Project loaded");
 
 console.log("Routes loaded successfully");
 
