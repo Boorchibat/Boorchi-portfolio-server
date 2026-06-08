@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+
 const auth = require("./src/route/auth");
 const message = require("./src/route/MessageRoute");
 const project = require("./src/route/ProjectRoute");
@@ -9,15 +10,11 @@ const project = require("./src/route/ProjectRoute");
 const app = express();
 const port = process.env.PORT || 9000;
 
-console.log("MONGODB_URL:", process.env.MONGODB_URL ? "FOUND" : "MISSING");
-console.log("JWTSECRET:", process.env.JWTSECRET ? "FOUND" : "MISSING");
-console.log("PORT:", process.env.PORT || "MISSING");
-
 app.use(
   cors({
     origin: [
-      "http://localhost:9000",
-      "https://lavenderblush-cat-844999.hostingersite.com/"
+      "http://localhost:3000",
+      "https://boorchi.com"
     ],
     credentials: true,
   })
@@ -25,23 +22,21 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", async (request, response) => {
-  response.send("This is the lost and found backend server");
+app.get("/", (req, res) => {
+  res.send("This is the backend server");
 });
 
 app.use("/auth", auth);
 app.use("/message", message);
 app.use("/project", project);
 
-
 mongoose
   .connect(process.env.MONGODB_URL)
   .then(() => {
-    console.log("Connected to MongoDB succesfully!");
-    app.listen(port, () => {
-      console.log(`✅server is running on port http://localhost:${port}`);
+    app.listen(port, "0.0.0.0", () => {
+      console.log(`Server running on port ${port}`);
     });
   })
-  .catch((error) => {
-    console.log("❌Error connecting to MongoDB", error);
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
   });
