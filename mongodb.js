@@ -5,11 +5,6 @@ console.log("MONGODB_URL =", process.env.MONGODB_URL ? "FOUND" : "MISSING");
 console.log("JWTSECRET =", process.env.JWTSECRET ? "FOUND" : "MISSING");
 console.log("PORT =", process.env.PORT || "MISSING");
 
-app.use((req, res, next) => {
-  console.log(req.method, req.url);
-  next();
-});
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -21,6 +16,11 @@ const project = require("./src/route/ProjectRoute");
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use((req, res, next) => {
+  console.log(req.method, req.url);
+  next();
+});
 
 app.use(
   cors({
