@@ -9,7 +9,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-
 const auth = require("./src/route/auth");
 const message = require("./src/route/MessageRoute");
 const project = require("./src/route/ProjectRoute");
@@ -17,15 +16,11 @@ const project = require("./src/route/ProjectRoute");
 const app = express();
 const port = process.env.PORT || 3000;
 
-
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://boorchi.com",
-    ],
+    origin: ["http://localhost:3000", "https://boorchi.com"],
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -68,16 +63,19 @@ async function startServer() {
     app.listen(port, "0.0.0.0", () => {
       console.log(`✅ Server running on port ${port}`);
     });
-
   } catch (err) {
     console.error("❌ Startup failed:");
     console.error(err);
     process.exit(1);
   }
   app.use((req, res) => {
-  console.log("NO ROUTE MATCHED:", req.method, req.originalUrl);
-  res.status(404).json({ message: "Not found" });
-});
+    console.log("NO ROUTE MATCHED:", req.method, req.originalUrl);
+    res.status(404).json({ message: "Not found" });
+  });
+  app.get("/test", (req, res) => {
+    console.log("TEST ROUTE HIT");
+    res.json({ success: true });
+  });
 }
 
 startServer();
