@@ -18,7 +18,7 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://boorchi.com"],
+    origin: ["http://localhost:3000", "https://api.boorchi.com",  "https://www.boorchi.com", "https://boorchi.com", "https://www.api.boorchi.com"],
     credentials: true,
   }),
 );
