@@ -1,4 +1,4 @@
-const transporter = require("../mailer");
+const transporter = require("../../mailer");
 
 const sendContactEmail = async (req, res) => {
   try {

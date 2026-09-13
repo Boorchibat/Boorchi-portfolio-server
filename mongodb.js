@@ -1,10 +1,5 @@
 require("dotenv").config();
 
-console.log("=== APP FILE LOADED ===");
-console.log("MONGODB_URL =", process.env.MONGODB_URL ? "FOUND" : "MISSING");
-console.log("JWTSECRET =", process.env.JWTSECRET ? "FOUND" : "MISSING");
-console.log("PORT =", process.env.PORT || "MISSING");
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -19,7 +14,11 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://api.boorchi.com",  "https://www.boorchi.com", "https://boorchi.com", "https://www.api.boorchi.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://www.boorchi.com",
+      "https://boorchi.com",
+    ],
     credentials: true,
   }),
 );
@@ -39,6 +38,16 @@ app.use("/auth", auth);
 app.use("/message", message);
 app.use("/project", project);
 app.use("/contact", contact);
+
+app.get("/test", (req, res) => {
+  console.log("TEST ROUTE HIT");
+  res.json({ success: true });
+});
+
+app.use((req, res) => {
+  console.log("NO ROUTE MATCHED:", req.method, req.originalUrl);
+  res.status(404).json({ message: "Not found" });
+});
 
 mongoose.connection.on("connected", () => {
   console.log("✅ MongoDB connected event");
@@ -70,14 +79,6 @@ async function startServer() {
     console.error(err);
     process.exit(1);
   }
-  app.use((req, res) => {
-    console.log("NO ROUTE MATCHED:", req.method, req.originalUrl);
-    res.status(404).json({ message: "Not found" });
-  });
-  app.get("/test", (req, res) => {
-    console.log("TEST ROUTE HIT");
-    res.json({ success: true });
-  });
 }
 
 startServer();

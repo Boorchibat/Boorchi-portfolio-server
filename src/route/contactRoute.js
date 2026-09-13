@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { sendContactEmail } = require("../controls/contactControl");
+const { sendContactEmail } = require("../controller/contact/contactControl");
 
-router.post("/contact", sendContactEmail);
+
+router.post("/", sendContactEmail);
 
 module.exports = router;
