@@ -12,6 +12,7 @@ const cors = require("cors");
 const auth = require("./src/route/auth");
 const message = require("./src/route/MessageRoute");
 const project = require("./src/route/ProjectRoute");
+const contact = require("./src/route/contactRoute");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 app.use("/auth", auth);
 app.use("/message", message);
 app.use("/project", project);
+app.use("/contact", contact);
 
 mongoose.connection.on("connected", () => {
   console.log("✅ MongoDB connected event");
